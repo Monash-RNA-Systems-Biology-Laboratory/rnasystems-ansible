@@ -31,6 +31,7 @@
   # R bits
   - r-base-dev
   - libjpeg62  #needed by rstudio
+  - libgstreamer-plugins-base0.10-0 #needed by rstudio
   - libxml2-dev #needed by DESeq
   # Needed by nesoni
   - imagemagick

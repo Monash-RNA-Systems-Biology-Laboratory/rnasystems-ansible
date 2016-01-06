@@ -1,0 +1,4 @@
+
+- name: Copy vnc utility
+  copy: src=scripts/vnc dest=/usr/local/bin mode=0755
+

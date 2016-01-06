@@ -5,4 +5,9 @@
 
   tasks:
     - include: tasks/common-packages.yml tags=common
-    - include: tasks/rstudio-application.yml version=0.99.491-amd64 tags=rstudio
+    - include: tasks/custom-scripts.yml tags=custom
+    #Doesn't work with VNC, use earlier version:
+    #- include: tasks/rstudio-application.yml version=0.99.491-amd64 tags=rstudio
+    - include: tasks/rstudio-application.yml version=0.98.1091-amd64 tags=rstudio
+
+

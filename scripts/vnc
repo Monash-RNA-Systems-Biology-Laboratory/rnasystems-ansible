@@ -22,6 +22,14 @@ You need to install:
 
 import argparse, sys, os, subprocess, time, socket
 
+password_file = os.path.join(os.environ["HOME"],".vnc","passwd")
+if not os.path.exists(password_file):
+    print
+    print "First, run vncpasswd to set a password."
+    print
+    sys.exit(1)
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('-display', type=int, default=(os.getuid() % 1000 + 1), help='display number')
 parser.add_argument("-geometry", metavar="WIDTHxHEIGHT", default="1000x700", help='screen size, default is 1000x600')
@@ -36,14 +44,6 @@ n = args.display
 geometry = args.geometry
 dpi = args.dpi
 action = args.action
-
-
-password_file = os.path.join(os.environ["HOME"],".vnc","passwd")
-if not os.path.exists(password_file):
-    print
-    print "Run vncpasswd to set a password."
-    print
-    sys.exit(1)
 
 
 os.environ['DISPLAY'] = ':%d' % n
@@ -104,7 +104,7 @@ if action in ("start","restart"):
     else:
         background('Xtightvnc :%(n)d -localhost -desktop X -depth 24 -dpi %(dpi)d'
                    ' -geometry %(geometry)s '
-                   ' -rfbauth %(password_file) ' 
+                   ' -rfbauth %(password_file)s ' 
                    ' -fp /usr/share/fonts/X11/misc/,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/75dpi/,/usr/'
                    ' -co /etc/X11/rgb'
                    % locals())
@@ -122,7 +122,7 @@ if action in ("start","restart"):
 
 if pid is not None and wspid is None:
     print "Starting websockify"
-    background("websockify localhost:%d localhost:%d" %
+    background("websockify 127.0.0.1:%d 127.0.0.1:%d" %
                (6100+n, 5900+n))
 
 
@@ -131,8 +131,11 @@ if pid is None:
 else:
     print "VNC server is running"
 
-    me = socket.gethostbyaddr(socket.gethostname())[0]
-    
+    #me = socket.gethostbyaddr(socket.gethostname())[0]
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('8.8.8.8', 0))  # connecting to a UDP address doesn't send packets
+    me = s.getsockname()[0]
+ 
     print
     print "Port %d, local connections only, so connect via ssh tunnel, eg:" % (5900+n)
     print
