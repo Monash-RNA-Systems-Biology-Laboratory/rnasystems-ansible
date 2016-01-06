@@ -1,0 +1,8 @@
+
+- name: Download Rstudio
+  get_url:
+    url=https://download1.rstudio.org/rstudio-{{version}}.deb
+    dest={{source_dir}}/rstudio-{{version}}.deb
+
+- name: Install RStudio
+  shell: gdebi -n {{source_dir}}/rstudio-{{version}}.deb

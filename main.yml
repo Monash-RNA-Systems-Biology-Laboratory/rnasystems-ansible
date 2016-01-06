@@ -1,0 +1,7 @@
+
+- hosts: all
+  vars:
+    - source_dir: /software/source
+
+  tasks:
+    - include: tasks/rstudio-application.yml version=0.99.149-amd64
