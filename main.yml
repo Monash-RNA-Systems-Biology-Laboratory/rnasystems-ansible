@@ -4,4 +4,4 @@
     - source_dir: /software/source
 
   tasks:
-    - include: tasks/rstudio-application.yml version=0.99.149-amd64
+    - include: tasks/rstudio-application.yml version=0.99.491-amd64
