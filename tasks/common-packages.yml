@@ -1,0 +1,37 @@
+
+- name: Install packages with apt
+  apt: name={{ item }} state=latest update_cache=yes cache_valid_time=86400
+  with_items:
+  # Home comforts
+  - pigz
+  - dbus-x11 #Necessary for gedit
+  - gedit
+  - gnome-terminal
+  - geeqie
+  - htop
+  - mosh
+  - git
+  - python-gtksourceview2 # For yaedit    
+  - lxde # For vncing
+  - websockify # For vncing
+  - tightvncserver
+  - autocutsel
+  - wmctrl
+  - lftp
+  - pandoc
+  - pypy
+  - python-pip
+  - python-virtualenv
+  - python-dev    
+  - python-keybinder
+  # Needed by matplotlib
+  - libfreetype6-dev
+  - libxft-dev
+  - libpng12-dev
+  # R bits
+  - r-base-dev
+  - libjpeg62  #needed by rstudio
+  - libxml2-dev #needed by DESeq
+  # Needed by nesoni
+  - imagemagick
+    

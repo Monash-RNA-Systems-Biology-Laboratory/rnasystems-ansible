@@ -4,4 +4,5 @@
     - source_dir: /software/source
 
   tasks:
-    - include: tasks/rstudio-application.yml version=0.99.491-amd64
+    - include: tasks/common-packages.yml tags=common
+    - include: tasks/rstudio-application.yml version=0.99.491-amd64 tags=rstudio
