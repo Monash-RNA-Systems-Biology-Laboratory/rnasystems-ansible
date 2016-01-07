@@ -35,4 +35,11 @@
   - libxml2-dev #needed by DESeq
   # Needed by nesoni
   - imagemagick
+
     
+- name: Remove unwanted packages with apt
+  apt: name={{ item }} state=absent
+  with_items:
+  - xscreensaver
+
+
