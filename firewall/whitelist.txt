@@ -24,3 +24,8 @@ data.broadinstitute.org
 igv.broadinstitute.org
 igvdata.broadinstitute.org
 
+
+#Github
+192.30.252.0/22
+
+
