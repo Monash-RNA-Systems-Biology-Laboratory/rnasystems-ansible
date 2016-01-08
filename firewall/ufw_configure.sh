@@ -12,7 +12,11 @@ read -d '' domains </root/whitelist.txt
 ufw --force reset
 ufw default deny incoming
 ufw default reject outgoing
-ufw allow ssh/tcp
+
+# Allow in from wired Monash servers and staff wireless lan
+ufw allow in proto tcp to any port 22 from 130.194.0.0/16
+ufw allow in proto tcp to any port 22 from 49.127.0.0/17
+
 ufw logging on
 
 for entry in $domains; do
